@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Feliz Aniversário!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #e84393;
+            --purple: #a855f7;
+            --lavender: #c084fc;
+            --soft-pink: #fce4f3;
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            background: linear-gradient(160deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            overflow-x: hidden;
+            position: relative;
+            color: #fff;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(232, 67, 147, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(192, 132, 252, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .borboleta {
+            position: fixed;
+            font-size: 1.6rem;
+            pointer-events: none;
+            z-index: 1;
+            animation: voar linear infinite;
+            opacity: 0.5;
+            filter: drop-shadow(0 0 8px rgba(232, 67, 147, 0.5));
+        }
+        .borboleta:nth-child(1) { left: 5%; animation-duration: 20s; }
+        .borboleta:nth-child(2) { left: 20%; animation-duration: 25s; animation-delay: 4s; }
+        .borboleta:nth-child(3) { left: 45%; animation-duration: 18s; animation-delay: 8s; }
+        .borboleta:nth-child(4) { left: 65%; animation-duration: 22s; animation-delay: 2s; }
+        .borboleta:nth-child(5) { left: 85%; animation-duration: 26s; animation-delay: 6s; }
+        .borboleta:nth-child(6) { left: 35%; animation-duration: 19s; animation-delay: 10s; }
+
+        @keyframes voar {
+            0% { top: -8%; transform: translateX(0) rotate(0deg) scale(0.9); }
+            25% { transform: translateX(25px) rotate(8deg) scale(1); }
+            50% { transform: translateX(-15px) rotate(-4deg) scale(0.95); }
+            75% { transform: translateX(10px) rotate(6deg) scale(1.02); }
+            100% { top: 108%; transform: translateX(0) rotate(0deg) scale(0.9); }
+        }
+
+        .petalos {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .petalo {
+            position: absolute;
+            width: 10px; height: 10px;
+            background: radial-gradient(ellipse, rgba(232, 67, 147, 0.4), transparent);
+            border-radius: 50% 0 50% 0;
+            opacity: 0.4;
+            animation: cair linear infinite;
+        }
+        .petalo:nth-child(1) { left: 12%; animation-duration: 14s; width: 8px; height: 8px; }
+        .petalo:nth-child(2) { left: 28%; animation-duration: 17s; animation-delay: 3s; width: 12px; height: 12px; }
+        .petalo:nth-child(3) { left: 50%; animation-duration: 12s; animation-delay: 6s; }
+        .petalo:nth-child(4) { left: 72%; animation-duration: 16s; animation-delay: 1s; width: 9px; height: 9px; }
+        .petalo:nth-child(5) { left: 88%; animation-duration: 15s; animation-delay: 5s; }
+
+        @keyframes cair {
+            0% { top: -5%; transform: rotate(0deg) translateX(0); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { top: 105%; transform: rotate(600deg) translateX(60px); opacity: 0; }
+        }
+
+        .conteudo {
+            position: relative;
+            z-index: 2;
+            padding: 24px 16px 40px;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fce4f3, #e84393, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .subtitulo {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .camera-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 20px;
+            aspect-ratio: 9 / 16;
+            border-radius: 28px;
+            overflow: hidden;
+            background: #1a1a2e;
+            box-shadow:
+                0 0 0 1px var(--glass-border),
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 80px rgba(168, 85, 247, 0.1);
+        }
+
+        #camera {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transform: scaleX(-1);
+        }
+
+        .camera-controls {
+            position: absolute;
+            bottom: 16px;
+            left: 0; right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .btn-camera-ctrl {
+            pointer-events: all;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+        }
+        .btn-camera-ctrl:active {
+            transform: scale(0.9);
+            background: rgba(0,0,0,0.6);
+        }
+
+        .moldura-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .moldura-topo {
+            text-align: center;
+            background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+            padding: 20px 16px 28px;
+        }
+
+        .moldura-topo .flores {
+            font-size: 0.9rem;
+            letter-spacing: 6px;
+            margin-bottom: 4px;
+            opacity: 0.8;
+        }
+        .moldura-topo .nome {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+            line-height: 1.1;
+        }
+        .moldura-topo .texto {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .moldura-base {
+            text-align: center;
+            background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+            padding: 28px 16px 18px;
+        }
+
+        .moldura-base .data {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+        .moldura-base .flores {
+            font-size: 0.9rem;
+            letter-spacing: 6px;
+            margin-top: 4px;
+            opacity: 0.8;
+        }
+
+        .moldura-lado {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            font-size: 0.55rem;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .moldura-lado-esq { left: 10px; }
+        .moldura-lado-dir { right: 10px; transform: translateY(-50%) rotate(180deg); }
+
+        #molduraImg { display: none; }
+
+        .btn-foto {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.8);
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(232, 67, 147, 0.4);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        .btn-foto::after {
+            content: '';
+            width: 58px; height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            border: 2px solid rgba(255,255,255,0.6);
+        }
+        .btn-foto:active {
+            transform: scale(0.92);
+            box-shadow: 0 2px 16px rgba(232, 67, 147, 0.6);
+        }
+
+        .botoes-acoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .botoes-acoes.escondido { display: none; }
+
+        .btn-acao {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: white;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .btn-acao:active { transform: scale(0.95); }
+
+        .btn-baixar { background: rgba(34, 197, 94, 0.8); }
+        .btn-whatsapp { background: rgba(37, 211, 102, 0.8); }
+        .btn-compartilhar { background: rgba(168, 85, 247, 0.8); }
+        .btn-nova { background: rgba(232, 67, 147, 0.8); }
+
+        canvas { display: none; }
+
+        .status-bar {
+            margin: 0 auto 16px;
+            padding: 10px 18px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 500;
+            max-width: 380px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .status-bar.sucesso {
+            background: rgba(34, 197, 94, 0.15);
+            color: #86efac;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        .status-bar.erro {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .status-bar.aviso {
+            background: rgba(234, 179, 8, 0.15);
+            color: #fde047;
+            border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+
+        .upload-progress {
+            margin: 0 auto 16px;
+            max-width: 380px;
+            display: none;
+        }
+        .upload-progress.ativo { display: block; }
+        .barra-progresso {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .barra-progresso-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--pink), var(--purple));
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+        .upload-progress p {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 6px;
+        }
+
+        .galeria-section {
+            margin-top: 28px;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .galeria-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fce4f3, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .galeria-item {
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.2s ease;
+        }
+        .galeria-item:active { transform: scale(0.97); }
+        .galeria-item img {
+            width: 100%;
+            aspect-ratio: 9/16;
+            object-fit: cover;
+        }
+        .galeria-item .info {
+            padding: 8px 10px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+            text-align: left;
+        }
+        .galeria-item .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 700;
+            color: white;
+            margin-top: 3px;
+        }
+        .status-sync { background: rgba(34,197,94,0.7); }
+        .status-erro { background: rgba(239,68,68,0.7); }
+
+        @media (max-width: 400px) {
+            h1 { font-size: 2rem; }
+            .camera-wrapper { max-width: 320px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="borboleta">🦋</div>
+<div class="borboleta">🦋</div>
+<div class="borboleta">🦋</div>
+<div class="borboleta">🦋</div>
+<div class="borboleta">🦋</div>
+<div class="borboleta">🦋</div>
+
+<div class="petalos">
+    <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
+    <div class="petalo"></div><div class="petalo"></div>
+</div>
+
+<div class="conteudo">
+    <div class="header">
+        <h1>Feliz Aniversário!</h1>
+        <p class="subtitulo">Jardim Encantado</p>
+    </div>
+
+    <div id="statusMsg" class="status-bar sucesso">
+        Pronto! Tire uma foto e ela vai direto pro Drive
+    </div>
+
+    <div class="camera-wrapper">
+        <video id="camera" autoplay playsinline></video>
+
+        <div class="moldura-overlay" id="molduraOverlay">
+            <div class="moldura-topo">
+                <div class="flores">🌸🦋🌸</div>
+                <div class="nome">Sarah</div>
+                <div class="texto">1 Aninho</div>
+            </div>
+            <div class="moldura-lado moldura-lado-esq">Jardim Encantado</div>
+            <div class="moldura-lado moldura-lado-dir">Jardim Encantado</div>
+            <div class="moldura-base">
+                <div class="data">2026</div>
+                <div class="flores">🦋🌸🦋</div>
+            </div>
+        </div>
+
+        <div class="camera-controls">
+            <button class="btn-camera-ctrl" id="btnTrocarCamera" title="Trocar câmera">🔄</button>
+        </div>
+
+        <img id="molduraImg" src="./assets/moldura.png">
+    </div>
+
+    <button class="btn-foto" id="tirarFoto" title="Tirar foto"></button>
+
+    <div class="upload-progress" id="uploadProgress">
+        <div class="barra-progresso">
+            <div class="barra-progresso-fill" id="progressFill"></div>
+        </div>
+        <p id="progressText">Preparando foto...</p>
+    </div>
+
+    <div id="botoesAcoes" class="botoes-acoes escondido">
+        <button id="btnBaixar" class="btn-acao btn-baixar">Baixar</button>
+        <button id="btnWhatsApp" class="btn-acao btn-whatsapp">WhatsApp</button>
+        <button id="btnCompartilhar" class="btn-acao btn-compartilhar">Compartilhar</button>
+        <button id="btnNovaFoto" class="btn-acao btn-nova">Nova Foto</button>
+    </div>
+
+    <div class="galeria-section" id="galeriaSection" style="display:none;">
+        <h2>Fotos Salvas</h2>
+        <div class="galeria-grid" id="galeriaGrid"></div>
+    </div>
+</div>
+
+<canvas id="canvas"></canvas>
+
+<script>
+    const APPSCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7dAISw4iz5N_y64zELssyuukbv3vRaWmohwM3VdyZaOSLcODZ-rR4p9ntuuciyHX9Zw/exec";
+
+    const video = document.getElementById("camera");
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const btn = document.getElementById("tirarFoto");
+    const btnTrocar = document.getElementById("btnTrocarCamera");
+    const botoesAcoes = document.getElementById("botoesAcoes");
+    const btnBaixar = document.getElementById("btnBaixar");
+    const btnWhatsApp = document.getElementById("btnWhatsApp");
+    const btnCompartilhar = document.getElementById("btnCompartilhar");
+    const btnNovaFoto = document.getElementById("btnNovaFoto");
+    const uploadProgress = document.getElementById("uploadProgress");
+    const progressFill = document.getElementById("progressFill");
+    const progressText = document.getElementById("progressText");
+    const galeriaSection = document.getElementById("galeriaSection");
+    const galeriaGrid = document.getElementById("galeriaGrid");
+    const statusMsg = document.getElementById("statusMsg");
+    const molduraOverlay = document.getElementById("molduraOverlay");
+
+    let imagemAtual = null;
+    let facingMode = "user";
+    let streamAtual = null;
+
+    function obterMetadados() {
+        const dados = localStorage.getItem("fotos_metadados");
+        return dados ? JSON.parse(dados) : [];
+    }
+
+    function salvarMetadados(metadados) {
+        localStorage.setItem("fotos_metadados", JSON.stringify(metadados));
+    }
+
+    function registrarFoto(metadata) {
+        const metadados = obterMetadados();
+        metadados.unshift(metadata);
+        salvarMetadados(metadados);
+        atualizarGaleria();
+    }
+
+    function atualizarGaleria() {
+        const metadados = obterMetadados();
+        if (metadados.length === 0) {
+            galeriaSection.style.display = "none";
+            return;
+        }
+        galeriaSection.style.display = "block";
+        galeriaGrid.innerHTML = "";
+        metadados.slice(0, 12).forEach(meta => {
+            const item = document.createElement("div");
+            item.className = "galeria-item";
+            const statusClasse = meta.status === "sync" ? "status-sync" : "status-erro";
+            const statusTexto = meta.status === "sync" ? "Salvo" : "Erro";
+            const dataFormatada = new Date(meta.dataEnvio).toLocaleDateString("pt-BR", {
+                day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit"
+            });
+            item.innerHTML = `
+                <img src="${meta.dataUrl}" alt="Foto">
+                <div class="info">
+                    <div>${meta.nomeArquivo}</div>
+                    <div>${dataFormatada}</div>
+                    <span class="status-badge ${statusClasse}">${statusTexto}</span>
+                </div>`;
+            if (meta.driveLink) {
+                item.style.cursor = "pointer";
+                item.onclick = () => window.open(meta.driveLink, "_blank");
+            }
+            galeriaGrid.appendChild(item);
+        });
+    }
+
+    async function iniciarCamera() {
+        try {
+            if (streamAtual) {
+                streamAtual.getTracks().forEach(t => t.stop());
+            }
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: facingMode, width: { ideal: 1280 }, height: { ideal: 720 } }
+            });
+            streamAtual = stream;
+            video.srcObject = stream;
+            video.style.transform = facingMode === "user" ? "scaleX(-1)" : "scaleX(1)";
+        } catch (erro) {
+            console.log(erro);
+            statusMsg.className = "status-bar erro";
+            statusMsg.textContent = "Não foi possível acessar a câmera.";
+            statusMsg.style.display = "block";
+        }
+    }
+
+    async function trocarCamera() {
+        facingMode = facingMode === "user" ? "environment" : "user";
+        await iniciarCamera();
+    }
+
+    function capturarFoto() {
+        const vw = video.videoWidth;
+        const vh = video.videoHeight;
+        const cw = 720;
+        const ch = 1280;
+
+        canvas.width = cw;
+        canvas.height = ch;
+
+        const videoAspect = vw / vh;
+        const canvasAspect = cw / ch;
+
+        let sx, sy, sw, sh;
+        if (videoAspect > canvasAspect) {
+            sh = vh;
+            sw = vh * canvasAspect;
+            sx = (vw - sw) / 2;
+            sy = 0;
+        } else {
+            sw = vw;
+            sh = vw / canvasAspect;
+            sx = 0;
+            sy = (vh - sh) / 2;
+        }
+
+        if (facingMode === "user") {
+            ctx.save();
+            ctx.translate(cw, 0);
+            ctx.scale(-1, 1);
+            ctx.drawImage(video, sx, sy, sw, sh, 0, 0, cw, ch);
+            ctx.restore();
+        } else {
+            ctx.drawImage(video, sx, sy, sw, sh, 0, 0, cw, ch);
+        }
+
+        desenharMolduraCanvas(cw, ch);
+
+        imagemAtual = canvas.toDataURL("image/jpeg", 0.85);
+
+        botoesAcoes.classList.remove("escondido");
+        btn.style.display = "none";
+        btnTrocar.style.display = "none";
+
+        enviarParaDrive();
+    }
+
+    function desenharMolduraCanvas(w, h) {
+        const ratioX = w / 380;
+
+        ctx.save();
+
+        const gradTop = ctx.createLinearGradient(0, 0, 0, h * 0.15);
+        gradTop.addColorStop(0, "rgba(0,0,0,0.45)");
+        gradTop.addColorStop(0.6, "rgba(0,0,0,0.15)");
+        gradTop.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = gradTop;
+        ctx.fillRect(0, 0, w, h * 0.15);
+
+        const gradBot = ctx.createLinearGradient(0, h, 0, h * 0.85);
+        gradBot.addColorStop(0, "rgba(0,0,0,0.45)");
+        gradBot.addColorStop(0.6, "rgba(0,0,0,0.15)");
+        gradBot.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = gradBot;
+        ctx.fillRect(0, h * 0.85, w, h * 0.15);
+
+        ctx.textAlign = "center";
+
+        ctx.font = `${Math.round(16 * ratioX)}px serif`;
+        ctx.fillStyle = "rgba(255,255,255,0.8)";
+        ctx.fillText("🌸🦋🌸", w / 2, h * 0.06);
+
+        ctx.font = `bold ${Math.round(48 * ratioX)}px 'Playfair Display', serif`;
+        ctx.fillStyle = "#fff";
+        ctx.shadowColor = "rgba(0,0,0,0.4)";
+        ctx.shadowBlur = 12;
+        ctx.fillText("Sarah", w / 2, h * 0.10);
+        ctx.shadowBlur = 0;
+
+        ctx.font = `600 ${Math.round(16 * ratioX)}px 'Inter', sans-serif`;
+        ctx.fillStyle = "rgba(255,255,255,0.7)";
+        ctx.fillText("1 Aninho", w / 2, h * 0.13);
+
+        ctx.font = `500 ${Math.round(14 * ratioX)}px 'Inter', sans-serif`;
+        ctx.fillStyle = "rgba(255,255,255,0.5)";
+        ctx.fillText("2026", w / 2, h * 0.92);
+
+        ctx.font = `${Math.round(16 * ratioX)}px serif`;
+        ctx.fillStyle = "rgba(255,255,255,0.8)";
+        ctx.fillText("🦋🌸🦋", w / 2, h * 0.96);
+
+        ctx.restore();
+    }
+
+    async function enviarParaDrive() {
+        if (!imagemAtual) return;
+        if (!APPSCRIPT_URL || APPSCRIPT_URL === "cole-sua-url-aqui") {
+            statusMsg.className = "status-bar aviso";
+            statusMsg.textContent = "Configure o APPSCRIPT_URL";
+            statusMsg.style.display = "block";
+            return;
+        }
+
+        uploadProgress.classList.add("ativo");
+        progressFill.style.width = "10%";
+        progressText.textContent = "Foto capturada! Enviando para o Drive...";
+
+        try {
+            const dataHora = new Date().toISOString().replace(/[:.]/g, "-");
+            const nomeArquivo = `foto-aniversario-${dataHora}.jpg`;
+
+            progressFill.style.width = "30%";
+            progressText.textContent = "Salvando no Google Drive...";
+
+            const response = await fetch(APPSCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify({ imagem: imagemAtual, nome: nomeArquivo }),
+                headers: { "Content-Type": "text/plain" }
+            });
+
+            progressFill.style.width = "70%";
+            const resultado = await response.json();
+            progressFill.style.width = "100%";
+
+            if (resultado.status === "ok") {
+                registrarFoto({
+                    id: Date.now().toString(),
+                    nomeArquivo: nomeArquivo,
+                    driveFileId: resultado.id,
+                    driveLink: resultado.link,
+                    dataEnvio: new Date().toISOString(),
+                    status: "sync",
+                    dataUrl: imagemAtual
+                });
+                progressText.textContent = "Foto salva no Drive!";
+                statusMsg.className = "status-bar sucesso";
+                statusMsg.textContent = `Foto salva!`;
+                statusMsg.style.display = "block";
+            } else {
+                throw new Error(resultado.mensagem || "Erro ao salvar");
+            }
+
+            setTimeout(() => { uploadProgress.classList.remove("ativo"); progressFill.style.width = "0%"; }, 3000);
+
+        } catch (erro) {
+            console.error("Erro ao enviar:", erro);
+            progressFill.style.width = "0%";
+            progressText.textContent = `Erro: ${erro.message}`;
+            statusMsg.className = "status-bar erro";
+            statusMsg.textContent = `Erro: ${erro.message}`;
+            statusMsg.style.display = "block";
+            registrarFoto({
+                id: Date.now().toString(), nomeArquivo: `foto-erro-${Date.now()}.jpg`,
+                driveFileId: null, driveLink: null, dataEnvio: new Date().toISOString(),
+                status: "erro", dataUrl: imagemAtual, erro: erro.message
+            });
+            setTimeout(() => { uploadProgress.classList.remove("ativo"); }, 4000);
+        }
+    }
+
+    async function compartilharWhatsApp() {
+        if (!imagemAtual) return;
+        try {
+            const response = await fetch(imagemAtual);
+            const blob = await response.blob();
+            const arquivo = new File([blob], "foto-aniversario.jpg", { type: "image/jpeg" });
+            if (navigator.canShare && navigator.canShare({ files: [arquivo] })) {
+                await navigator.share({ files: [arquivo], title: "Foto do Aniversário" });
+            } else { baixarFoto(); alert("Foto baixada! Envie pelo WhatsApp."); }
+        } catch (erro) { if (erro.name !== "AbortError") { baixarFoto(); alert("Foto baixada! Envie pelo WhatsApp."); } }
+    }
+
+    async function compartilharOutros() {
+        if (!imagemAtual) return;
+        try {
+            const response = await fetch(imagemAtual);
+            const blob = await response.blob();
+            const arquivo = new File([blob], "foto-aniversario.jpg", { type: "image/jpeg" });
+            if (navigator.canShare && navigator.canShare({ files: [arquivo] })) {
+                await navigator.share({ files: [arquivo], title: "Foto do Aniversário" });
+            } else { baixarFoto(); alert("Foto baixada!"); }
+        } catch (erro) { if (erro.name !== "AbortError") { baixarFoto(); alert("Foto baixada!"); } }
+    }
+
+    function baixarFoto() {
+        if (!imagemAtual) return;
+        const link = document.createElement("a");
+        link.download = "foto-aniversario.jpg";
+        link.href = imagemAtual;
+        link.click();
+    }
+
+    function tirarNovaFoto() {
+        botoesAcoes.classList.add("escondido");
+        btn.style.display = "flex";
+        btnTrocar.style.display = "flex";
+        imagemAtual = null;
+        statusMsg.style.display = "none";
+    }
+
+    btn.addEventListener("click", capturarFoto);
+    btnTrocar.addEventListener("click", trocarCamera);
+    btnBaixar.addEventListener("click", baixarFoto);
+    btnWhatsApp.addEventListener("click", compartilharWhatsApp);
+    btnCompartilhar.addEventListener("click", compartilharOutros);
+    btnNovaFoto.addEventListener("click", tirarNovaFoto);
+
+    iniciarCamera();
+    atualizarGaleria();
+</script>
+
+</body>
+</html>
