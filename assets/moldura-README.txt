@@ -1,0 +1,1 @@
+placeholder - substitua por moldura.png real
